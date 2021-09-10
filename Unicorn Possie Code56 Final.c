@@ -1,5 +1,5 @@
 #pragma config(Motor,  port1,           Front_Right,   tmotorVex393_HBridge, openLoop)
-#pragma config(Motor,  port2,           Front_left,    tmotorVex393_MC29, openLoop)
+#pragma config(Motor,  port2,           Front_Left,    tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port3,           Back_Right,    tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port4,           Back_Left,     tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port5,           Clap,          tmotorServoStandard, openLoop)
@@ -11,11 +11,23 @@ task main()
 {
 	setServo(Clap,0);
 	setServo(Clap2,0);
+	
+	motor[Front_Left] = 100;
+	motor[Back_Left] = 100;
+	motor[Front_Right] = 100;
+	motor[Back_Right] = 100;
+	waitInMilliseconds(7500)
+	motor[Front_Left] = -100;
+	motor[Back_Left] = -100;
+	motor[Front_Right] = -100;
+	motor[Back_Right] = -100;
+	waitInMilliseconds(7500);	
+	
 	while(1==1)
 		{
 			int left= vexRT[Ch3] + vexRT[Ch1];
 			int right= vexRT[Ch3] - vexRT[Ch1];
-			motor[Front_left]=left;
+			motor[Front_Left]=left;
 			motor[Back_Left]=left;
 			motor[Front_Right]=right;
 			motor[Back_Right]=right;
